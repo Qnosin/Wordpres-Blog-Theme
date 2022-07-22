@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap');
+$primary-color:#000;
+$primary-color-hover:#333333;
+$secondary-color:#D9D9D9;
+$image-radius:20px;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.1em;
+    line-height: 28px;
+    color: $primary-color;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+h1,h2,h3{
+    font-weight: normal;
+    margin-bottom: 18px;
+    font-size: 1.6em;
+}
+p{
+    margin-bottom: 10px;
+}
+
+a{
+    color: $primary-color;
+    &:hover{
+        color: $secondary-color;
+    }
+}
+
+input{
+    font-family: inherit;
+    border: 0;
+    font-size: .8em;
+    height: 65px;
+    padding: 10px;
+    &::placeholder{
+        color: $secondary-color;
+    }
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "header mobile-menu"
+    "hamburger-menu hamburger-menu"
+    "slogan slogan"
+    "author author"
+    "social social"
+    "container container"
+    "footer footer"
+    ;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.toggleMyMenu-active{
+    display: flex !important;
+    animation: appear 1s ease;
+}
+.toggleMyMenu{
+    grid-area: hamburger-menu;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    display: none;
+    ul{
+        list-style-type: none;
+        text-align: center;
+        li{
+            padding: 10px;
+            font-size: 1.3em;
+        }
+    }
+    a{
+        text-decoration: none;
+        &:hover{
+           border-bottom: 1px solid black;
+           padding-bottom:5px ;
+        }
+    }
+}
+
+header{
+    grid-area: header;
+    padding: 40px 0;
+    img{
+        max-width: 50%;
+        filter: grayscale(100%);
+    }
+}
+
+.mobile-menu{
+    grid-area: mobile-menu;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-self: center;
+    justify-self: end;
+    font-size: 0.8em;
+    text-align: center;
+    img{
+        max-width: 50px;
+        cursor: pointer;
+    }
+}
+.slogan{
+    grid-area: slogan;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid $secondary-color;
+    border-bottom: 1px solid $secondary-color;
+}
+.social{
+    grid-area: social;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-row-gap: 20px;
+    grid-template-areas: 'newsletter'
+    "networks";
+
+
+    .newsletter{
+        grid-area: newsletter;
+        display: grid;
+        grid-template-columns: 80% 20%;
+
+        .subscribebutton{
+            background-color: $primary-color;
+            color: #fff;
+        }
+    }
+    .networks{
+        grid-area: networks;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a{
+            flex-grow: 1;
+            text-align: center;
+            flex-basis: 0;
+        }
+    }
+    img{
+        max-width:50%;
+        filter: grayscale(100%);
+    }
+}
+.author{
+    grid-area: author;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    text-align: center;
+    grid-column-gap: 6%;
+    padding: 25px 0;
+    grid-template-areas:
+     "author-image author-image"
+     "author-content author-content";
+
+     .auther-image{
+        grid-area: author-image;
+    }
+    
+    .author-content{
+        grid-area: author-content;
+    }
+    img{
+        border-radius: $image-radius;
+    }
+}
+
+
+
+.container{
+    grid-area: container;
+}
+
+.articles{
+    display: grid;
+    grid-gap: 6%;
+    padding: 25px 0;
+    border-bottom: 1px solid $secondary-color;
+    grid-template-areas: 
+    'thumbnail'
+    'content';
+
+    .thumbnail{
+        height: 217px;
+        grid-area: thumbnail;
+
+        img{
+            border-radius: $image-radius;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+    }
+}
+
+.content{
+    grid-area: content;
+}
+
+.button{
+    padding: 20px 0;
+}
+
+.loadmore{
+    background-color: $primary-color;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.footer{
+    grid-area: footer;
+}
+
+
+@keyframes appear{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width:736px){
+    .author{
+        grid-template-areas: 
+        "author-image author-content";
+    }
+
+    .social{
+        grid-template-columns:2fr 1fr;
+        grid-template-areas: "newsletter  networks";
+        .networks{
+            margin-bottom: 0;
+        }
+    }
+    .articles{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "thumbnail content";
+    }
+}
+
+
